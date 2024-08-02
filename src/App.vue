@@ -1,12 +1,15 @@
 <script setup>
 import HelloWorld from "./components/HelloWorld.vue";
 import Header from "./components/Header.vue";
+import ProductList from './components/ProductList.vue'
 </script>
 
 <template>
-  <Header text="Hello" />
+  <Header />
+  <main>
+    <ProductList/>
+  </main>
 
-  <HelloWorld msg="Hello Comp" />
 </template>
 
 <style scoped></style>
