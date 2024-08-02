@@ -1,7 +1,10 @@
 <script setup>
-defineProps({
-  text: String,
-});
+const toggleNavbar = () => {
+    const dropDown = document.getElementById("navbar-dropdown");
+    dropDown.classList.contains("hidden")
+      ? dropDown.classList.remove("hidden")
+      : dropDown.classList.add("hidden");
+  };
 
 </script>
 
@@ -17,11 +20,12 @@ defineProps({
             <span
               class="self-center text-2xl font-semibold whitespace-nowrap text-white"
             >
-              {{ text }}Buy&Go.
+              Buy&Go.
             </span>
           </button>
         </div>
         <button
+        @click="toggleNavbar"
           data-collapse-toggle="navbar-default"
           type="button"
           class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
@@ -48,7 +52,7 @@ defineProps({
 
         <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
           <ul
-            class="flex flex-col top-10 font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-500 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0"
+            class="flex flex-col top-10 font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0"
           >
             <li>
               <div
