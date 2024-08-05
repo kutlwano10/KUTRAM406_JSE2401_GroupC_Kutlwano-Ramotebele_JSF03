@@ -2,6 +2,7 @@
 // import useProductStore from "../../store/store";
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import ProductSkeleton from './ProductSkeleton.vue';
 
 const route = useRoute();
 const product = ref(null);
@@ -36,8 +37,7 @@ onMounted(async () => {
 
 <template>
   <div v-if="loading">
-    Loading...
-
+    <ProductSkeleton/>
   </div>
   <div v-else-if="product" class="mt-6 sm:mt-8 lg:flex lg:items-start  lg:max-w-6xl xl:max-w-7xl ">
       <div class="mx-auto w-2/5 flex-none">

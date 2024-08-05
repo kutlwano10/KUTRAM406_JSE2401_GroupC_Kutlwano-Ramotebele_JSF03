@@ -17,7 +17,7 @@ let props = defineProps({
     <div
       class="flex flex-col max-h-[130rem] cursor-pointer max-w-80 hover:-translate-y-1 hover:scale-105 duration-300 bg-white border border-slate-200 shadow shadow-slate-950/5 rounded-2xl overflow-hidden"
     >
-      <router-link :to="`/product/${product.id}`"><img class="object-contain h-48 mt-3" :src="product.image" alt="Course 01" /></router-link>
+      <router-link :to="`/product/${product.id}`"><img class="object-contain h-48 mt-3 " :src="product.image" alt="Course 01" /></router-link>
       
       <div class="flex-1 flex flex-col p-6">
         <div class="flex-1">
