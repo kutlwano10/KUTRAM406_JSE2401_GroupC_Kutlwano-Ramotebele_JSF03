@@ -1,24 +1,28 @@
 <script setup>
-import useProductStore from "../../store/store";
+import {useProductStore }from "../../store/store";
 import ProductCard from "./ProductCard.vue";
 import CardSkeleton from "./CardSkeleton.vue";
 import { ref, onMounted } from "vue";
+import Sort from "./Sort.vue";
 
 /**
  * initialize ProductStore
  */
 
-const { products, loading, error, fetchProducts } = useProductStore();
+const productStore = useProductStore();
 
 onMounted(() => {
-  fetchProducts();
+  productStore.fetchProducts();
 });
 </script>
 
 <template>
   <div class="grid justify-center">
+    <div>
+      <Sort/>
+    </div>
     <div
-    v-if="loading"
+    v-if="productStore.loading"
       class="lg:max-h-[130rem] max-w-xl mx-auto grid gap-4 grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center lg:max-w-none my-4"
     >
         <CardSkeleton v-for="index in 20" :key="index" />
@@ -29,9 +33,10 @@ onMounted(() => {
     <div
       class="lg:max-h-[130rem] max-w-xl mx-auto grid gap-4 grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center lg:max-w-none my-4"
     >
-      <div v-if="error">{{ error }}</div>
+    
+      <div v-if="productStore.error">{{ productStore.error }}</div>
       <ProductCard
-        v-for="product in products"
+        v-for="product in productStore.products"
         :key="product.id"
         :product="product"
       />

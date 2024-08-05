@@ -1,6 +1,7 @@
 import { ref } from "vue";
+import { defineStore } from "pinia";
 
-export default function useProductStore() {
+export const useProductStore = defineStore("product", () => {
   const products = ref([]);
   const loading = ref(true);
   const error = ref(null);
@@ -52,6 +53,5 @@ export default function useProductStore() {
     loading,
     error,
     fetchProducts,
-    
   };
-}
+});
