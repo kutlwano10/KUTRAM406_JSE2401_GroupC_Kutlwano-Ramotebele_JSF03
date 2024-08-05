@@ -3,6 +3,7 @@
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import ProductSkeleton from './ProductSkeleton.vue';
+import turnBack from '../../public/turn-back.png'
 
 const route = useRoute();
 const product = ref(null);
@@ -36,6 +37,7 @@ onMounted(async () => {
 
 
 <template>
+  <router-link to=".."><img class="w-[32px] m-4" :src="turnBack" alt="" ></router-link>
   <div v-if="loading">
     <ProductSkeleton/>
   </div>
