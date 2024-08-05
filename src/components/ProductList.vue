@@ -8,11 +8,10 @@ import Sort from "./Sort.vue";
 /**
  * initialize ProductStore
  */
-
-const productStore = useProductStore();
+const store = useProductStore();
 
 onMounted(() => {
-  productStore.fetchProducts();
+  store.fetchProducts();
 });
 </script>
 
@@ -22,7 +21,7 @@ onMounted(() => {
       <Sort/>
     </div>
     <div
-    v-if="productStore.loading"
+    v-if="store.loading"
       class="lg:max-h-[130rem] max-w-xl mx-auto grid gap-4 grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center lg:max-w-none my-4"
     >
         <CardSkeleton v-for="index in 20" :key="index" />
@@ -34,9 +33,9 @@ onMounted(() => {
       class="lg:max-h-[130rem] max-w-xl mx-auto grid gap-4 grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center lg:max-w-none my-4"
     >
     
-      <div v-if="productStore.error">{{ productStore.error }}</div>
+      <div v-if="store.error">{{ store.error }}</div>
       <ProductCard
-        v-for="product in productStore.products"
+        v-for="product in store.sortedProducts"
         :key="product.id"
         :product="product"
       />

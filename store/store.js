@@ -1,10 +1,44 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
+import { computed } from "vue";
 
 export const useProductStore = defineStore("product", () => {
   const products = ref([]);
   const loading = ref(true);
   const error = ref(null);
+  const initialSort = ref("default");
+
+  const sortOptions = [
+    { value: "default", label: "Default" },
+    { value: "low", label: "Price: Low to High" },
+    { value: "high", label: "Price: High to Low" },
+    { value: "a-z", label: "Name: A to Z" },
+    { value: "z-a", label: "Name: Z to A" },
+  ];
+
+  const sortedProducts = computed(() => {
+    if (initialSort.value === "default") return products.value;
+
+    return [...products.value].sort((a,b)=>{
+        switch(initialSort.value) {
+          case 'low':
+          return a.price - b.price;
+          case 'high':
+          return b.price - a.price;
+          case 'a-z': 
+          return a.title.localeCompare(b.title);
+          case 'z-a': 
+          return b.title.localeCompare(a.title);
+          default :
+          return 0;
+        }
+    })
+  });
+
+  const setSort=(sortValue)=> {
+    initialSort.value = sortValue;
+
+  }
 
   const fetchSingleProduct = async (id) => {
     loading.value = true;
@@ -18,7 +52,7 @@ export const useProductStore = defineStore("product", () => {
         );
       }
       const data = await res.json();
-      console.log("Fetch", data);
+
       products.value = data;
     } catch (err) {
       error.value = err.message;
@@ -39,7 +73,7 @@ export const useProductStore = defineStore("product", () => {
         );
       }
       const data = await res.json();
-      console.log("Fetch", data);
+
       products.value = data;
     } catch (err) {
       error.value = err.message;
@@ -53,5 +87,9 @@ export const useProductStore = defineStore("product", () => {
     loading,
     error,
     fetchProducts,
+    initialSort, 
+    sortOptions,
+    sortedProducts,
+    setSort,
   };
 });
