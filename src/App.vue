@@ -6,7 +6,7 @@ import ProductList from './components/ProductList.vue'
 <template>
   <Header />
   <main>
-    <ProductList/>
+    <!-- <ProductList/> -->
     <router-view></router-view>
   </main>
 
