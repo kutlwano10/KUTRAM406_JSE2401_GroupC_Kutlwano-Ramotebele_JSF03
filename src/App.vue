@@ -7,8 +7,10 @@ import ProductList from './components/ProductList.vue'
   <Header />
   <main>
     <ProductList/>
+    <router-view></router-view>
   </main>
 
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>

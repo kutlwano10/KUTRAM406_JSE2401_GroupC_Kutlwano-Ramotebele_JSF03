@@ -16,10 +16,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div className="grid justify-center">
+  <div class="grid justify-center">
     <div
     v-if="loading"
-      className="lg:max-h-[130rem] max-w-xl mx-auto grid gap-4 grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center lg:max-w-none my-4"
+      class="lg:max-h-[130rem] max-w-xl mx-auto grid gap-4 grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center lg:max-w-none my-4"
     >
         <CardSkeleton v-for="index in 20" :key="index" />
     </div>

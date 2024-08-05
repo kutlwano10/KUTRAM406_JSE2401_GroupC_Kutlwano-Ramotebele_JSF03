@@ -14,8 +14,9 @@ const toggleNavbar = () => {
       <div
         class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
       >
-        <div>
-          <button class="flex items-center space-x-3 rtl:space-x-reverse">
+        <div> 
+          <a href="/">
+            <button class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="" class="h-8" alt="" />
             <span
               class="self-center text-2xl font-semibold whitespace-nowrap text-white"
@@ -23,6 +24,8 @@ const toggleNavbar = () => {
               Buy&Go.
             </span>
           </button>
+          </a>
+          
         </div>
         <button
         @click="toggleNavbar"
