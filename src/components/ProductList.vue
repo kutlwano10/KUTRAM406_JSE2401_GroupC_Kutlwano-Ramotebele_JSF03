@@ -41,7 +41,7 @@ onMounted(() => {
 
 <template>
   <div class="grid justify-center">
-    <div class="flex justify-around gap-20">
+    <div class="flex justify-around gap-20 m-5">
       <Filter :categories="store.categories" @filterChange="handleFilterChange"/>
       <Sort />
     </div>

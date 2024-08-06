@@ -19,8 +19,8 @@ const emitChange = () => {
 
 <template>
     <div class="filter flex items-center">
-      <label for="category-select "></label>
-      <select id="category-select" class="" v-model="selectedCategory"  @change="emitChange">
+      <label for="category-select " class="font-bold">Category: </label>
+      <select id="category-select" class=" bg-gray-100 p-2 rounded-lg" v-model="selectedCategory"  @change="emitChange">
         <option value="">All Categories</option>
         <option v-for="category in categories" :key="category" :value="category">
           {{ category }}
