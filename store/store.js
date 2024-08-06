@@ -4,9 +4,38 @@ import { computed } from "vue";
 
 export const useProductStore = defineStore("product", () => {
   const products = ref([]);
+  const singleProduct =ref(null)
   const loading = ref(true);
   const error = ref(null);
   const initialSort = ref("default");
+  const categories = ref([])
+
+  const fetchCategories = async () => {
+    loading.value = true;
+    error.value = null;
+
+    try {
+      const res = await fetch(`https://fakestoreapi.com/products/categories`);
+      if (!res.ok) {
+        throw new Error(
+          "Data fetching failed, please check your network connection"
+        );
+      }
+      const data = await res.json();
+
+      categories.value = data;
+    } catch (err) {
+      error.value = err.message;
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const filteredProducts = computed(() => (categoryId) => {
+    if (!categoryId) return sortedProducts.value;
+    return sortedProducts.value.filter(product => product.category === categoryId);
+  });
+
 
   const sortOptions = [
     { value: "default", label: "Default" },
@@ -53,7 +82,7 @@ export const useProductStore = defineStore("product", () => {
       }
       const data = await res.json();
 
-      products.value = data;
+      singleProduct.value = data;
     } catch (err) {
       error.value = err.message;
     } finally {
@@ -87,9 +116,14 @@ export const useProductStore = defineStore("product", () => {
     loading,
     error,
     fetchProducts,
+    fetchSingleProduct,
+    singleProduct,
     initialSort, 
     sortOptions,
     sortedProducts,
     setSort,
+    fetchCategories,
+    filteredProducts,
+    categories,
   };
 });
